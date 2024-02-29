@@ -1,43 +1,86 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppMiTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTabBar extends StatelessWidget {
+  const AppMiTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: "Ejemplo TabBar Vega",
+      theme: ThemeData(primarySwatch: Colors.indigo),
+      home: MiPaginaInicial(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+//stateful
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+} //MiPaginaInicial
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("TabBar Gema Vega"),
+          centerTitle: true,
+          bottom: TabBar(tabs: [
+            Tab(
+              text: "Paletas",
+              icon: Icon(Icons.star),
+            ),
+            Tab(
+              text: "Gomitas",
+              icon: Icon(Icons.add_circle),
+            ),
+            Tab(
+              text: "Papitas",
+              icon: Icon(Icons.favorite_border_outlined),
+            ),
+            Tab(
+              text: "Lucas",
+              icon: Icon(Icons.post_add),
+            ),
+          ] //fin de Tab
+              ), //Fin bottom TabBar
         ),
-      ),
-    );
-  }
-}
+        body: TabBarView(children: const <Widget>[
+          Center(
+            child: Text(
+              "Tutsi Pop",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Panditas de corazon",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Chips Moradas",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Lucas Muecas",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+        ] //Jardin de niños
+            ), //Fin TabBar view
+      ), //Fin scaffold
+    ); //DefaultTabController
+  } //fin widget
+} //_MiPaginaInicialState
